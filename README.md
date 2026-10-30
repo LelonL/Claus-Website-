@@ -1,55 +1,24 @@
-# MietMeister 🛠️
+# Was läuft wo?
 
-Eine kleine Website zum Buchen von Geräten – z. B. einem **Hochdruckreiniger** oder dem
-**Ecovacs W3 Omni** Saug- und Wischroboter. Buchbar **stundenweise** oder als **Tagespauschale**.
-
-## Features
-
-- 📦 Geräte-Katalog mit Beschreibung, Tags, Stunden- und Tagespreis sowie Verfügbarkeit
-- ⏱️ Buchung stundenweise **oder** für einen ganzen Tag (bzw. mehrere Tage)
-- 💶 Automatische Preisberechnung – Stundenpreise werden nie teurer als die Tagespauschale (Deckelung)
-- 📋 Übersicht "Meine Buchungen" mit Storno-Funktion
-- 💾 Speicherung lokal im Browser (`localStorage`) – keine Anmeldung nötig
-- 📱 Responsives, modernes Design
+Eine einfache Website: Film oder Serie suchen, und sie zeigt, wo man ihn schauen kann.
+Gemacht für Menschen, die sich mit Technik nicht gut auskennen: große Schrift, große Knöpfe, wenig Text.
 
 ## Starten
 
-Es ist eine reine statische Website – kein Build-Schritt nötig. Einfach öffnen:
+Es ist eine einfache statische Website, ohne Build-Schritt. `index.html` im Browser öffnen,
+oder sie mit GitHub Pages veröffentlichen.
 
-```bash
-# Option A: Datei direkt im Browser öffnen
-open index.html            # macOS
-xdg-open index.html        # Linux
+## Titel hinzufügen
 
-# Option B: Kleiner lokaler Server (empfohlen)
-python3 -m http.server 8000
-# dann http://localhost:8000 im Browser aufrufen
-```
-
-## Geräte anpassen
-
-Alle Geräte und Preise stehen in `app.js` im Array `DEVICES`. Ein neues Gerät hinzufügen:
+Alle Titel stehen in `app.js` in der Liste `TITEL`:
 
 ```js
-{
-  id: "rasenmaeher",
-  name: "Rasenmäher",
-  emoji: "🌱",
-  desc: "Beschreibung des Geräts.",
-  tags: ["Tag 1", "Tag 2"],
-  hourly: 5,      // Preis pro Stunde in €
-  daily: 25,      // Tagespauschale in €
-  available: true,
-}
+{ name: "Tatort", art: "serie", genre: "Krimi", jahr: "seit 1970", bei: ["ard"] },
 ```
 
-## Dateien
+- `art`: `"film"`, `"serie"` oder `"sendung"`
+- `bei`: einer oder mehrere Anbieter aus `ANBIETER` (`ard`, `zdf`, `netflix`, `prime`, `disney`, `apple`, `rtl`)
+- `auch` (optional): andere Namen, z. B. `["Money Heist"]`
 
-| Datei         | Zweck                                    |
-| ------------- | ---------------------------------------- |
-| `index.html`  | Struktur & Inhalt                        |
-| `styles.css`  | Design                                   |
-| `app.js`      | Geräte-Daten, Preislogik, Buchungen      |
-
-> Hinweis: Dies ist eine Demo. Buchungen werden nur lokal im Browser gespeichert
-> und nicht an einen Server gesendet.
+Die Anbieter ändern ihr Angebot ab und zu. Die Liste sollte man also gelegentlich prüfen.
+Das Datum steht unten auf der Seite (in `index.html`).

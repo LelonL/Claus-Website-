@@ -2,173 +2,57 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MietMeister – Geräte einfach buchen</title>
-  <meta name="description" content="Miete Geräte wie Hochdruckreiniger oder Ecovacs W3 Omni – stundenweise oder für einen ganzen Tag." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Was läuft wo?</title>
+  <meta name="description" content="Filme und Serien suchen und sehen, wo man sie schauen kann." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#">
-        <span class="brand-mark">◈</span>
-        <span>MietMeister</span>
-      </a>
-      <nav class="nav">
-        <a href="#geraete">Geräte</a>
-        <a href="#so-gehts">So geht's</a>
-        <a href="#buchungen">Meine Buchungen</a>
-      </nav>
-    </div>
+  <header class="kopf">
+    <h1>Was läuft wo?</h1>
+    <p>Suchen Sie einen Film oder eine Serie. Wir zeigen Ihnen, wo es läuft.</p>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="eyebrow">Geräte mieten statt kaufen</p>
-          <h1>Buche Geräte<br />stundenweise oder für einen Tag.</h1>
-          <p class="lead">
-            Vom Hochdruckreiniger bis zum Ecovacs W3 Omni Saug- und Wischroboter –
-            wähle dein Gerät, deinen Zeitraum und buche in unter einer Minute.
-          </p>
-          <div class="hero-actions">
-            <a href="#geraete" class="btn btn-primary">Geräte ansehen</a>
-            <a href="#so-gehts" class="btn btn-ghost">So funktioniert's</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="hero-card-row"><span>Verfügbar heute</span><strong id="statAvailable">–</strong></div>
-          <div class="hero-card-row"><span>Geräte im Angebot</span><strong id="statCount">–</strong></div>
-          <div class="hero-card-row"><span>Ab Preis / Stunde</span><strong id="statMin">–</strong></div>
-        </div>
+    <div class="suche">
+      <label for="suchfeld">Wonach suchen Sie?</label>
+      <div class="suchzeile">
+        <input id="suchfeld" type="search" placeholder="z. B. Tatort" autocomplete="off" enterkeyhint="search" />
+        <button id="leeren" type="button" class="leeren" hidden>Löschen</button>
       </div>
+    </div>
+
+    <div class="filter" role="group" aria-label="Auswahl">
+      <button type="button" data-filter="alle" aria-pressed="true">Alles</button>
+      <button type="button" data-filter="film" aria-pressed="false">Filme</button>
+      <button type="button" data-filter="serie" aria-pressed="false">Serien</button>
+      <button type="button" data-filter="gratis" aria-pressed="false">Kostenlos</button>
+    </div>
+
+    <p id="anzahl" class="anzahl" aria-live="polite"></p>
+
+    <ul id="liste" class="liste"></ul>
+
+    <section class="nicht-dabei">
+      <h2>Ihr Film ist nicht dabei?</h2>
+      <p>Dann fragen Sie JustWatch. Die Seite kennt fast alle Filme und Serien.</p>
+      <a id="justwatch" class="knopf" href="https://www.justwatch.com/de" target="_blank" rel="noopener">Bei JustWatch suchen</a>
     </section>
 
-    <section id="geraete" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Unsere Geräte</h2>
-          <p>Alle Geräte sind gereinigt, geprüft und startklar.</p>
-        </div>
-        <div id="deviceGrid" class="device-grid"></div>
-      </div>
-    </section>
-
-    <section id="so-gehts" class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <h2>So geht's</h2>
-          <p>In drei Schritten zur fertigen Buchung.</p>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <span class="step-num">1</span>
-            <h3>Gerät wählen</h3>
-            <p>Such dir das passende Gerät aus unserem Sortiment aus.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">2</span>
-            <h3>Zeitraum festlegen</h3>
-            <p>Stundenweise oder als Tagespauschale – ganz wie du brauchst.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">3</span>
-            <h3>Buchen &amp; loslegen</h3>
-            <p>Buchung bestätigen und Gerät abholen oder liefern lassen.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="buchungen" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Meine Buchungen</h2>
-          <p>Deine reservierten Geräte auf einen Blick.</p>
-        </div>
-        <div id="bookingList" class="booking-list"></div>
-      </div>
+    <section class="erklaerung">
+      <h2>Was bedeutet das?</h2>
+      <dl>
+        <dt><span class="marke gratis">Kostenlos</span></dt>
+        <dd>Sie bezahlen nichts. Einfach antippen und schauen.</dd>
+        <dt><span class="marke abo">Mit Abo</span></dt>
+        <dd>Sie brauchen ein bezahltes Konto bei diesem Anbieter. Das kostet jeden Monat Geld.</dd>
+      </dl>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> MietMeister</span>
-      <span class="footer-note">Demo-Website · Buchungen werden lokal in deinem Browser gespeichert.</span>
-    </div>
+  <footer class="fuss">
+    <p>Stand: Oktober 2026. Die Anbieter ändern ihr Angebot manchmal.</p>
   </footer>
-
-  <!-- Buchungs-Dialog -->
-  <div id="bookingModal" class="modal" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" data-close aria-label="Schließen">×</button>
-      <div class="modal-head">
-        <div class="modal-emoji" id="modalEmoji">🧼</div>
-        <div>
-          <h3 id="modalTitle">Gerät buchen</h3>
-          <p id="modalSubtitle" class="modal-subtitle"></p>
-        </div>
-      </div>
-
-      <form id="bookingForm" class="booking-form">
-        <div class="field">
-          <label>Buchungsart</label>
-          <div class="toggle" role="radiogroup" aria-label="Buchungsart">
-            <label class="toggle-opt">
-              <input type="radio" name="mode" value="hourly" checked />
-              <span>Stundenweise</span>
-            </label>
-            <label class="toggle-opt">
-              <input type="radio" name="mode" value="daily" />
-              <span>Ganzer Tag</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="bookDate">Datum</label>
-          <input type="date" id="bookDate" name="date" required />
-        </div>
-
-        <div class="field-row" id="hourlyFields">
-          <div class="field">
-            <label for="startTime">Startzeit</label>
-            <input type="time" id="startTime" name="startTime" value="09:00" />
-          </div>
-          <div class="field">
-            <label for="hours">Anzahl Stunden</label>
-            <input type="number" id="hours" name="hours" min="1" max="12" step="1" value="2" />
-          </div>
-        </div>
-
-        <div class="field-row" id="dailyFields" hidden>
-          <div class="field">
-            <label for="days">Anzahl Tage</label>
-            <input type="number" id="days" name="days" min="1" max="30" step="1" value="1" />
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="customerName">Dein Name</label>
-          <input type="text" id="customerName" name="name" placeholder="Max Mustermann" required />
-        </div>
-
-        <div class="summary">
-          <div class="summary-row"><span id="summaryLabel">Preis</span><strong id="summaryPrice">–</strong></div>
-          <p class="summary-hint" id="summaryHint"></p>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block">Jetzt buchen</button>
-      </form>
-    </div>
-  </div>
-
-  <div id="toast" class="toast" hidden></div>
 
   <script src="app.js"></script>
 </body>
